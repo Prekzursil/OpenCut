@@ -9,5 +9,4 @@ projects:
 # `moon ci` derives its base revision from vcs.defaultBranch and fails with
 # "fatal: ambiguous argument 'master'" on push runs when this is not set.
 vcs:
-  manager: git
   defaultBranch: main
