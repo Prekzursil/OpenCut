@@ -25,4 +25,6 @@ tasks:
       - '/Cargo.toml'
       - '/Cargo.lock'
     outputs:
-      - '/target/release/opencut-desktop'
+      # glob (optional outputs) so the same declaration matches the
+      # extensionless binary on unix and opencut-desktop.exe on Windows
+      - '/target/release/opencut-desktop*'

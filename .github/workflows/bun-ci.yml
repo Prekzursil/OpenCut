@@ -33,5 +33,11 @@ jobs:
           auto-install: true
           auto-setup: true
 
+      - name: Install desktop native dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y             libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev             libxkbcommon-dev libxkbcommon-x11-dev
+
       - name: Run CI
         run: moon ci
