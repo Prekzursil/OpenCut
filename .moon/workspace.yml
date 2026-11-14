@@ -1,9 +1,11 @@
 $schema: 'https://moonrepo.dev/schemas/workspace.json'
 
-# Discover all projects under apps/ automatically.
-# When shared crates land under crates/, add a 'crates/*' glob here.
 projects:
-  - 'apps/*'
+  globs:
+    - 'apps/*'
+    - 'crates/*'
+  sources:
+    root: '.'
 
 # This fork's default branch is `main` (upstream uses `master`).
 # `moon ci` derives its base revision from vcs.defaultBranch and fails with

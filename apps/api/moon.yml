@@ -20,5 +20,7 @@ tasks:
 
   deploy:
     command: 'bun run deploy'
+    options:
+      runInCI: false  # deploy needs CLOUDFLARE_API_TOKEN; not a CI check
     deps:
       - '~:build'
