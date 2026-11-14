@@ -4,3 +4,10 @@ $schema: 'https://moonrepo.dev/schemas/workspace.json'
 # When shared crates land under crates/, add a 'crates/*' glob here.
 projects:
   - 'apps/*'
+
+# This fork's default branch is `main` (upstream uses `master`).
+# `moon ci` derives its base revision from vcs.defaultBranch and fails with
+# "fatal: ambiguous argument 'master'" on push runs when this is not set.
+vcs:
+  manager: git
+  defaultBranch: main
