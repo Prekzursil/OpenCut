@@ -206,7 +206,11 @@ async function main() {
 
   const destination = join(cache, `ffmpeg-${manifest.version}-${key}`);
   const marker = join(destination, ".complete");
-  if (existsSync(marker) && (await Bun.file(marker).text()).trim() === stamp) {
+  // Read the marker directly instead of existsSync-then-read: a separate
+  // existence check can be invalidated between the check and the read
+  // (TOCTOU). A missing file simply reads as null.
+  const markerContent = await Bun.file(marker).text().catch(() => null);
+  if (markerContent !== null && markerContent.trim() === stamp) {
     console.log(`FFmpeg ${manifest.version} for ${key} is ready in ${destination}`);
     return;
   }
