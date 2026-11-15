@@ -15,7 +15,6 @@ import { createHash } from "node:crypto";
 import { availableParallelism } from "node:os";
 import {
   copyFileSync,
-  existsSync,
   mkdirSync,
   readdirSync,
   renameSync,
