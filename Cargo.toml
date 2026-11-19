@@ -12,3 +12,14 @@ license = "MIT"
 
 [workspace.dependencies]
 gpui = "0.2.2"
+
+# SECURITY: grid < 1.0.1 (GHSA-38c5-483c-4qqp, integer overflow in
+# Grid::expand_rows -> safe-API UB) is only reachable through taffy, and
+# gpui 0.2.2 pins taffy =0.9.0 exactly (verified via crates.io dependency
+# API 2026-11-19) while taffy 0.9.2 — which moved to grid ^1.0 — cannot
+# satisfy that pin. This patch points taffy at a 0.9.0 fork whose only
+# change is allowing grid ^1.0.1 (it compiles unchanged against grid 1.0.1;
+# verified with cargo check --features grid). Remove when gpui ships a
+# release on taffy >= 0.9.2.
+[patch.crates-io]
+taffy = { git = "https://github.com/Prekzursil/taffy", branch = "v0.9.0-grid-1.0.1" }
